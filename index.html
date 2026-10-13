@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Безпечні осінні канікули — адаптивний ресурс для вчителів</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/fontsource/fonts/rubik@latest/cyrillic-700-normal.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/fontsource/fonts/rubik@latest/cyrillic-500-normal.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/fontsource/fonts/nunito@latest/cyrillic-400-normal.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/fontsource/fonts/nunito@latest/cyrillic-600-normal.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/fontsource/fonts/nunito@latest/cyrillic-800-normal.css" rel="stylesheet" />
+<style>
+:root{
+  --bg:#fdf6ec;
+  --bg2:#f7ead8;
+  --ink:#33291f;
+  --muted:#6f6154;
+  --card:#fffdf9;
+  --line:#e9d9c3;
+  --accent:#d9743a;
+  --accent-soft:#fdeade;
+  --accent-ink:#8f4318;
+  --ok:#4c8c3f;
+  --ok-soft:#e7f3e2;
+  --bad:#c0442f;
+  --bad-soft:#fbe7e2;
+  --danger:#8b1a1a;
+  --danger-soft:#fbe0e0;
+  --shadow:0 18px 40px -22px rgba(90,55,25,.45);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 600px at 12% -10%, #ffe7c8 0%, transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, #ffd9c0 0%, transparent 55%),
+    linear-gradient(180deg,var(--bg),var(--bg2));
+  min-height:100vh;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:"Rubik",system-ui,sans-serif;line-height:1.25;margin:0}
+button{font-family:inherit}
+a{color:var(--accent-ink)}
+
+#leaves{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.leaf-fall{position:absolute;top:-60px;opacity:.55;animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite}
+.leaf-sway{display:block;animation-name:sway;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
+@keyframes fall{to{transform:translateY(115vh) rotate(320deg)}}
+@keyframes sway{0%,100%{transform:translateX(-16px) rotate(-14deg)}50%{transform:translateX(16px) rotate(14deg)}}
+
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:28px 20px 70px}
+.brand{display:flex;align-items:center;gap:12px;font-family:"Rubik",sans-serif;font-weight:700}
+.brand-mark{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px;
+  background:linear-gradient(140deg,#f0a04b,#c9552c);color:#fff;box-shadow:0 8px 18px -8px rgba(180,80,40,.7)}
+.brand-name{font-size:1.02rem;letter-spacing:.2px}
+.brand-sub{display:block;font-size:.74rem;font-weight:400;color:var(--muted);letter-spacing:.4px;text-transform:uppercase}
+
+/* ===== Бейдж автора на титульній сторінці ===== */
+.author-top{display:flex;align-items:center;gap:10px;margin:0 auto 20px;width:fit-content;
+  background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 24px;
+  box-shadow:var(--shadow);font-size:.95rem;color:var(--muted);animation:pop .4s}
+.author-top .a-dot{font-size:1.05rem;line-height:1}
+.author-top b{color:var(--ink);font-family:"Rubik",sans-serif}
+.author-top .a-name{color:var(--accent-ink);font-weight:800}
+
+.gate-head{text-align:center;margin:26px auto 34px;max-width:780px}
+.eyebrow{display:inline-block;background:#fff;border:1px solid var(--line);color:var(--accent-ink);
+  padding:6px 16px;border-radius:999px;font-size:.78rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase}
+.gate-head h1{font-size:clamp(1.9rem,4.6vw,3rem);margin:18px 0 10px;font-weight:700}
+.gate-head p{color:var(--muted);font-size:1.06rem;margin:0 auto}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+  text-align:left;cursor:pointer;position:relative;overflow:hidden;box-shadow:var(--shadow);
+  transition:transform .28s cubic-bezier(.2,.8,.3,1),box-shadow .28s,border-color .28s}
+.cat-card::before{content:"";position:absolute;inset:0 0 auto;height:6px;background:var(--c)}
+.cat-card:hover,.cat-card:focus-visible{transform:translateY(-8px);border-color:var(--c);box-shadow:0 28px 50px -26px rgba(90,55,25,.6);outline:none}
+.cat-art{width:100%;height:132px;border-radius:16px;background:var(--soft);display:block;margin-bottom:16px}
+.cat-emoji{font-size:1.7rem;line-height:1}
+.cat-card h2{font-size:1.35rem;margin:8px 0 6px}
+.cat-card p{color:var(--muted);font-size:.94rem;margin:0 0 16px;min-height:66px}
+.cat-pick{display:inline-flex;align-items:center;gap:8px;background:var(--c);color:#fff;border:none;
+  padding:10px 18px;border-radius:999px;font-weight:800;font-size:.9rem;cursor:pointer;transition:filter .2s,transform .2s}
+.cat-card:hover .cat-pick{filter:brightness(1.06);transform:translateX(3px)}
+.adapts{margin-top:38px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow)}
+.adapts h3{font-size:1.05rem;margin-bottom:14px}
+.adapts ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.adapts li{display:flex;gap:10px;font-size:.93rem;color:var(--muted);background:#fffaf3;border:1px solid var(--line);border-radius:14px;padding:11px 13px}
+.adapts li b{color:var(--ink)}
+.chip{flex:0 0 auto;width:26px;height:26px;border-radius:9px;display:grid;place-items:center;background:var(--accent-soft);font-size:.9rem}
+
+#app{display:none}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(253,246,236,.88);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);margin:0 -20px 26px;padding:14px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cur{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);
+  padding:8px 16px;border-radius:14px;font-weight:800;font-family:"Rubik",sans-serif}
+.cur small{display:block;font-weight:400;font-family:"Nunito",sans-serif;color:var(--muted);font-size:.76rem}
+.topbar .spacer{flex:1}
+.btn{border:none;cursor:pointer;border-radius:12px;padding:10px 16px;font-weight:800;font-size:.9rem;transition:transform .18s,filter .18s,background .18s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 20px -12px var(--accent)}
+.btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn:focus-visible{outline:3px solid #f3b478;outline-offset:2px}
+
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.tab{background:#fffaf2;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:10px 18px;
+  font-weight:800;font-size:.9rem;cursor:pointer;transition:.22s;display:inline-flex;align-items:center;gap:8px}
+.tab:hover{border-color:var(--accent);color:var(--accent-ink);transform:translateY(-2px)}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 12px 22px -14px var(--accent)}
+.panel{display:none;animation:pop .35s cubic-bezier(.2,.8,.3,1)}
+.panel.active{display:block}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.sec-head{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.sec-head h2{font-size:clamp(1.4rem,3vw,1.9rem)}
+.sec-head p{color:var(--muted);margin:4px 0 0;font-size:.98rem;max-width:62ch}
+.badge{background:var(--accent-soft);color:var(--accent-ink);border:1px solid #f2d5bc;border-radius:999px;
+  padding:6px 14px;font-size:.78rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;white-space:nowrap}
+
+.mine-hero{background:linear-gradient(135deg,#3a0d0d 0%,#7d1818 45%,#a22626 100%);color:#fff;border-radius:var(--radius);
+  padding:26px;box-shadow:var(--shadow);margin-bottom:22px;position:relative;overflow:hidden;border:1.5px solid rgba(255,255,255,.15)}
+.mine-hero::before{content:"⚠️";position:absolute;right:-30px;bottom:-30px;font-size:200px;opacity:.08;transform:rotate(-15deg);pointer-events:none}
+.mine-hero-head{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:14px;position:relative;z-index:1}
+.mine-icon{width:56px;height:56px;border-radius:15px;background:rgba(255,255,255,.15);display:grid;place-items:center;font-size:1.8rem;flex:0 0 auto}
+.mine-hero h2{font-size:1.4rem;color:#fff}
+.mine-hero-sub{color:#ffd4d4;font-size:.95rem;margin:0}
+.mine-hero p{position:relative;z-index:1;color:#f6dcdc;font-size:.98rem;margin:0 0 14px;max-width:78ch}
+.mine-triad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;position:relative;z-index:1}
+.triad-card{background:rgba(255,255,255,.1);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);
+  border-radius:16px;padding:16px;text-align:center}
+.triad-card .big{font-size:1.8rem;display:block;margin-bottom:6px}
+.triad-card b{display:block;font-family:"Rubik",sans-serif;font-size:1.05rem;margin-bottom:4px;color:#fff}
+.triad-card span{display:block;font-size:.85rem;color:#f6dcdc}
+.mine-actions{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+.mine-actions .btn{background:#fff;color:var(--danger);border:1.5px solid #fff}
+.mine-actions .btn:hover{background:#fff5f5;border-color:#fff}
+
+.rules-list{display:flex;flex-direction:column;gap:12px}
+.rule-acc{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;transition:border-color .25s}
+.rule-acc[open]{border-color:var(--accent)}
+.rule-acc summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;gap:14px;align-items:center;font-family:"Rubik",sans-serif;font-weight:500;font-size:1.03rem;transition:background .2s;user-select:none}
+.rule-acc summary::-webkit-details-marker{display:none}
+.rule-acc summary:hover{background:#fff7ec}
+.rule-acc summary .r-ico{flex:0 0 auto;width:44px;height:44px;border-radius:13px;background:var(--accent-soft);display:grid;place-items:center;font-size:1.25rem}
+.rule-acc summary .r-txt{flex:1}
+.rule-acc summary .r-txt b{display:block}
+.rule-acc summary .r-txt small{display:block;color:var(--muted);font-size:.85rem;font-weight:400;font-family:"Nunito",sans-serif;margin-top:2px}
+.rule-acc summary .r-plus{flex:0 0 auto;width:28px;height:28px;border-radius:9px;background:#f6ead9;display:grid;place-items:center;transition:transform .28s,background .28s;color:#8a5a34;font-weight:800}
+.rule-acc[open] summary .r-plus{transform:rotate(45deg);background:var(--accent);color:#fff}
+.rule-body{padding:0 20px 20px 78px;color:var(--muted);font-size:.95rem;animation:pop .3s}
+.rule-body p{margin:0 0 12px}
+.rule-body p:last-child{margin-bottom:0}
+.rule-body ul{margin:6px 0 10px;padding-left:20px}
+.rule-body ul li{margin-bottom:6px}
+.rule-body b{color:var(--ink)}
+.rule-body .pill{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);padding:3px 10px;border-radius:999px;font-size:.82rem;font-weight:700;margin-right:6px;margin-bottom:4px}
+.rule-body .warn{background:#fff4ec;border-left:4px solid var(--accent);padding:10px 14px;border-radius:10px;margin-top:10px;font-size:.9rem}
+
+.emergency{margin-top:22px;background:linear-gradient(120deg,#3d2c22,#5a3b28);color:#ffe9d4;border-radius:var(--radius);
+  padding:22px;box-shadow:var(--shadow)}
+.emergency h3{color:#fff;font-size:1.1rem;margin-bottom:14px}
+.num-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.num{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.num b{font-family:"Rubik",sans-serif;font-size:1.5rem;color:#ffca8f;line-height:1}
+.num span{font-size:.88rem;color:#f6dcc4}
+
+.quiz-bar{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);
+  border-radius:16px;padding:14px 18px;margin-bottom:20px;box-shadow:var(--shadow);flex-wrap:wrap}
+.pbar{flex:1;min-width:170px;height:12px;background:#f1e3d1;border-radius:999px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#f0a04b,var(--accent));transition:width .45s cubic-bezier(.2,.8,.3,1)}
+.quiz-bar b{font-family:"Rubik",sans-serif}
+.q-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:var(--shadow)}
+.q-head{display:flex;gap:13px;align-items:flex-start;margin-bottom:14px}
+.q-num{flex:0 0 auto;width:34px;height:34px;border-radius:11px;background:var(--accent);color:#fff;font-weight:800;
+  display:grid;place-items:center;font-family:"Rubik",sans-serif}
+.q-head h3{font-size:1.06rem}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;background:#fffaf3;border:1.5px solid var(--line);
+  border-radius:14px;padding:12px 14px;cursor:pointer;font-size:.95rem;color:var(--ink);transition:.2s;font-weight:600}
+.opt:hover:not(:disabled){border-color:var(--accent);background:#fff5ea;transform:translateX(4px)}
+.opt:disabled{cursor:default;opacity:.95}
+.opt .letter{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:#f4e5d2;display:grid;place-items:center;
+  font-size:.8rem;font-weight:800;font-family:"Rubik",sans-serif;color:#8a5a34}
+.opt.correct{border-color:var(--ok);background:var(--ok-soft)}
+.opt.correct .letter{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.wrong .letter{background:var(--bad);color:#fff}
+.opt.reveal{border-color:var(--ok);border-style:dashed;background:#fff}
+.why{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:.92rem;animation:pop .3s}
+.why.good{background:var(--ok-soft);border:1px solid #c9e2c0;color:#2f5c26}
+.why.bad{background:var(--bad-soft);border:1px solid #f0c9c0;color:#8d2f1e}
+.result{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow);animation:pop .4s}
+.score{font-family:"Rubik",sans-serif;font-size:2.6rem;font-weight:700;color:var(--accent)}
+.result p{color:var(--muted);margin:6px 0 16px}
+
+.check-wrap{display:grid;grid-template-columns:1.6fr .9fr;gap:20px;align-items:start}
+.check-list{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow)}
+.check-item{display:flex;gap:13px;align-items:flex-start;padding:13px 12px;border-radius:14px;cursor:pointer;transition:background .2s}
+.check-item:hover{background:#fff7ec}
+.check-item + .check-item{border-top:1px dashed var(--line)}
+.check-item input{position:absolute;opacity:0;width:0;height:0}
+.box{flex:0 0 auto;width:26px;height:26px;border-radius:9px;border:2px solid #dcc7ac;background:#fff;
+  display:grid;place-items:center;transition:.2s;margin-top:1px}
+.box svg{width:15px;height:15px;opacity:0;transform:scale(.4);transition:.2s}
+.check-item input:checked + .box{background:var(--ok);border-color:var(--ok)}
+.check-item input:checked + .box svg{opacity:1;transform:scale(1)}
+.check-item input:focus-visible + .box{outline:3px solid #f3b478;outline-offset:2px}
+.check-item span.txt{font-size:.96rem}
+.check-item.done span.txt{color:var(--muted);text-decoration:line-through;text-decoration-color:#cdb69a}
+.check-side{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);position:sticky;top:96px}
+.ring{width:130px;height:130px;margin:0 auto 12px;display:block}
+.ring circle{fill:none;stroke-width:11;stroke-linecap:round}
+.ring .bg{stroke:#f1e3d1}
+.ring .fg{stroke:var(--accent);transition:stroke-dashoffset .6s cubic-bezier(.2,.8,.3,1)}
+.ring-txt{font-family:"Rubik",sans-serif;font-weight:700;font-size:1.5rem;fill:var(--ink)}
+.check-side h3{text-align:center;font-size:1.05rem;margin-bottom:6px}
+.check-msg{text-align:center;color:var(--muted);font-size:.92rem;min-height:66px;margin:0 0 14px}
+
+.parents{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+details.acc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:0 20px;box-shadow:var(--shadow);overflow:hidden}
+details.acc summary{list-style:none;cursor:pointer;padding:18px 0;display:flex;gap:13px;align-items:center;font-family:"Rubik",sans-serif;font-weight:500;font-size:1.02rem}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary .pico{flex:0 0 auto;width:40px;height:40px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;font-size:1.15rem}
+details.acc summary .plus{margin-left:auto;flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:#f6ead9;display:grid;place-items:center;transition:transform .25s;color:#8a5a34;font-weight:800}
+details.acc[open] summary .plus{transform:rotate(45deg);background:var(--accent);color:#fff}
+details.acc .acc-body{padding:0 0 18px 53px;color:var(--muted);font-size:.94rem;animation:pop .3s}
+details.acc .acc-body ul{margin:8px 0 0;padding-left:18px}
+details.acc .acc-body li{margin-bottom:6px}
+.tip{margin-top:22px;background:#fff8ec;border:1px dashed #e3c39c;border-radius:18px;padding:18px 20px;color:var(--muted);font-size:.94rem}
+.tip b{color:var(--ink)}
+
+.memo-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+.paper{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.paper-inner{border:2px dashed #e6cdb0;border-radius:16px;padding:22px}
+.paper-head{display:flex;gap:16px;align-items:center;border-bottom:2px solid var(--accent);padding-bottom:14px;margin-bottom:16px;flex-wrap:wrap}
+.paper-head .cat-badge{display:flex;align-items:center;gap:10px;background:var(--accent);color:#fff;border-radius:14px;padding:10px 16px;font-family:"Rubik",sans-serif;font-weight:700}
+.paper-head .cat-badge span.e{font-size:1.4rem}
+.paper-head .cat-badge small{display:block;font-family:"Nunito",sans-serif;font-weight:400;font-size:.72rem;opacity:.9}
+.paper-head h3{font-size:1.2rem}
+.paper-head .date{margin-left:auto;color:var(--muted);font-size:.85rem;text-align:right}
+.paper h4{font-size:.95rem;text-transform:uppercase;letter-spacing:1px;color:var(--accent-ink);margin:18px 0 8px}
+.paper ol,.paper ul{margin:0;padding-left:20px}
+.paper li{margin-bottom:6px;font-size:.95rem}
+.paper .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fill-line{border-bottom:1.5px solid #d9c6ad;height:26px;margin-bottom:6px}
+.fill-row{display:flex;align-items:flex-end;gap:8px;margin-bottom:8px;font-size:.9rem;color:var(--muted)}
+.fill-row .fill-line{flex:1}
+.sign{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+.sign .fill-line{min-width:120px}
+.mini-nums{display:flex;gap:10px;flex-wrap:wrap}
+.mini-num{background:var(--accent-soft);border-radius:12px;padding:8px 14px;font-family:"Rubik",sans-serif;font-weight:700;color:var(--accent-ink);font-size:.95rem}
+
+.memo-author{margin-top:20px;padding-top:14px;border-top:2px solid var(--accent);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.memo-author .author-badge{flex:0 0 auto;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(140deg,#f0a04b,#c9552c);color:#fff;font-size:1rem;font-family:"Rubik",sans-serif;font-weight:800}
+.memo-author .author-txt{font-size:.92rem;color:var(--muted)}
+.memo-author .author-txt b{color:var(--ink);font-family:"Rubik",sans-serif}
+
+.footer-note{margin-top:40px;text-align:center;color:var(--muted);font-size:.86rem}
+
+#printSheet{display:none}
+
+@media (max-width:900px){
+  .cats{grid-template-columns:1fr}
+  .check-wrap{grid-template-columns:1fr}
+  .check-side{position:static}
+  .paper .cols{grid-template-columns:1fr}
+  .mine-triad{grid-template-columns:1fr}
+  .rule-body{padding-left:20px}
+  .author-top{font-size:.85rem;padding:8px 16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+/* ===== ДРУК: рівно один аркуш A4, книжкова орієнтація ===== */
+@media print{
+  @page{size:A4 portrait;margin:9mm}
+  html,body{background:#fff}
+  #screenRoot,#leaves{display:none!important}
+  #printSheet{display:block!important;color:#000;font-size:9.5pt;line-height:1.32}
+  #printSheet .paper{box-shadow:none;border:none;padding:0}
+  #printSheet .paper-inner{border:1.5pt dashed #999;padding:4.5mm;border-radius:5pt}
+  #printSheet .paper-head{border-bottom:1.6pt solid #000;padding-bottom:5px;margin-bottom:7px;gap:10px}
+  #printSheet .paper-head h3{font-size:12pt}
+  #printSheet .paper-head .date{font-size:8pt}
+  #printSheet .cat-badge{border:1.3pt solid #000;background:#fff!important;color:#000!important;border-radius:5pt;padding:5px 10px;font-size:9.5pt}
+  #printSheet .cat-badge span.e{font-size:1rem}
+  #printSheet .cat-badge small{font-size:6.8pt}
+  #printSheet .paper h4{font-size:8.6pt;margin:7px 0 3px;letter-spacing:.6px}
+  #printSheet .paper ol{padding-left:17px}
+  #printSheet .paper li{margin-bottom:1.5px;font-size:9.3pt}
+  #printSheet .paper .cols{gap:10px}
+  #printSheet .mini-nums{gap:5px}
+  #printSheet .mini-num{border:1pt solid #666;background:#fff;color:#000;padding:3px 9px;font-size:8.5pt;border-radius:8px}
+  #printSheet .cols p{margin-top:5px!important;font-size:7.6pt!important}
+  #printSheet .fill-row{margin-bottom:2px;font-size:8.4pt}
+  #printSheet .fill-line{height:17px}
+  #printSheet .sign{margin-top:7px;padding-top:5px;gap:12px;font-size:7.8pt}
+  #printSheet .sign .fill-line{min-width:90px}
+  #printSheet .memo-author{margin-top:7px;padding-top:6px;border-top:1.3pt solid #000;gap:9px}
+  #printSheet .memo-author .author-badge{width:26px;height:26px;font-size:7.5pt;border-radius:7pt;background:#fff!important;color:#000;border:1.2pt solid #000}
+  #printSheet .memo-author .author-txt{font-size:8.4pt}
+  #printSheet .note{font-size:7.2pt!important;margin-top:5px!important}
+  #printSheet *{-webkit-print-color-adjust:exact;print-color-adjust:exact;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div id="leaves" aria-hidden="true"></div>
+
+<div id="screenRoot">
+<div class="wrap">
+
+  <section id="gate">
+
+    <!-- Бейдж автора вгорі титульної сторінки -->
+    <div class="author-top">
+      <span class="a-dot">🟠</span>
+      <span><b>ЗБД</b> | Ідеї • Матеріали • Уроки. <span class="a-name">Ірина ТЕСЛЕНОК</span></span>
+    </div>
+
+    <div class="topbar" style="position:relative;margin-bottom:0;border:none;background:transparent;backdrop-filter:none">
+      <div class="brand">
+        <div class="brand-mark">🍁</div>
+        <div>
+          <span class="brand-name">Безпечні осінні канікули</span>
+          <span class="brand-sub">Освітній ресурс для вчителя</span>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <span class="badge" id="gateDate"></span>
+    </div>
+
+    <div class="gate-head">
+      <span class="eyebrow">Крок 1 з 1 · Оберіть категорію</span>
+      <h1>Безпечні осінні канікули</h1>
+      <p>Виберіть вікову категорію — і весь ресурс (правила, тест, чекліст, матеріали для батьків та пам’ятка для друку) автоматично адаптується до ваших учнів.</p>
+    </div>
+
+    <div class="cats" id="catGrid"></div>
+
+    <div class="adapts">
+      <h3>🔄 Що адаптується до вибраної категорії</h3>
+      <ul>
+        <li><span class="chip">🛡️</span><span><b>Правила безпеки</b> — розширені, з мінною безпекою.</span></li>
+        <li><span class="chip">🧩</span><span><b>Інтерактивний тест</b> — 6 ситуаційних запитань для кожної категорії.</span></li>
+        <li><span class="chip">✅</span><span><b>Чекліст готовності</b> — окремі твердження для самоперевірки учнів.</span></li>
+        <li><span class="chip">👪</span><span><b>Матеріали для батьків</b> — як підтримати самостійність дитини.</span></li>
+        <li><span class="chip">🖨️</span><span><b>Пам’ятка для друку</b> — один аркуш A4 (книжковий формат) з вибраною категорією.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <main id="app" aria-live="polite">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-mark">🍁</div>
+        <div>
+          <span class="brand-name">Безпечні осінні канікули</span>
+          <span class="brand-sub">Освітній ресурс</span>
+        </div>
+      </div>
+      <div class="cur" id="curCat"></div>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost" id="printTop">🖨️ Пам’ятка</button>
+      <button class="btn btn-ghost" id="changeCat">↩︎ Змінити категорію</button>
+    </div>
+
+    <nav class="tabs" role="tablist" aria-label="Розділи ресурсу" id="tabs">
+      <button class="tab" role="tab" data-tab="rules" aria-selected="true">🛡️ Правила безпеки</button>
+      <button class="tab" role="tab" data-tab="quiz" aria-selected="false">🧩 Тест · 6 ситуацій</button>
+      <button class="tab" role="tab" data-tab="check" aria-selected="false">✅ Чекліст готовності</button>
+      <button class="tab" role="tab" data-tab="parents" aria-selected="false">👪 Батькам</button>
+      <button class="tab" role="tab" data-tab="memo" aria-selected="false">🖨️ Пам’ятка для друку</button>
+    </nav>
+
+    <section class="panel active" id="panel-rules" role="tabpanel"></section>
+    <section class="panel" id="panel-quiz" role="tabpanel"></section>
+    <section class="panel" id="panel-check" role="tabpanel"></section>
+    <section class="panel" id="panel-parents" role="tabpanel"></section>
+    <section class="panel" id="panel-memo" role="tabpanel"></section>
+
+    <p class="footer-note">🍂 ЗБД | Ідеї • Матеріали • Уроки. Ірина ТЕСЛЕНОК</p>
+  </main>
+
+</div>
+</div>
+
+<section id="printSheet" aria-hidden="true"></section>
+
+<script>
+const DATA = [
+{
+  id:"g14", emoji:"🍁", title:"1–4 класи", art:"art14",
+  tagline:"Прості правила, зрозумілі ситуації та завдання з акцентом на допомогу дорослих.",
+  color:"#e08a2e", soft:"#fdf0dd", ink:"#8a5410",
+  mine:{
+    lead:"Україна — одна з найбільш замінованих країн світу. Осіннє листя може приховувати небезпечні предмети, тому мінна безпека — найголовніше правило прогулянок.",
+    triad:[
+      {e:"🚫",t:"НЕ ЧІПАЙ",d:"Жодних незнайомих предметів — ні руками, ні палицею, ні ногою."},
+      {e:"⛔",t:"НЕ ПІДХОДЬ",d:"Відійди повільно назад тим самим шляхом, яким прийшов."},
+      {e:"📣",t:"СКАЖИ ДОРОСЛОМУ",d:"Поклич маму, тата, вчителя, поліцейського. Сам не повертайся."}
+    ],
+    items:[
+      {i:"🚧",t:"Побачив дивний предмет — не чіпай!",
+       body:`<p>Якщо ти побачив <b>на землі</b> щось незнайоме — зупинись. Це може бути: банка, телефон, іграшка, блискучий метал, коробочка, дріт, щось схоже на ручку чи телефон.</p>
+        <ul>
+          <li><b>Не штовхай</b> ногою, навіть якщо це схоже на іграшку.</li>
+          <li><b>Не піднімай</b>, навіть якщо дуже хочеться подивитись.</li>
+          <li><b>Не кидай</b> у нього камінці чи палиці.</li>
+        </ul>
+        <div class="warn">Під осіннім листям і в калюжах небезпечні предмети видно дуже погано. Дивись під ноги!</div>`},
+      {i:"🍂",t:"Не лізь у купи листя та чагарники",
+       body:`<p>Восени багато опалого листя, і діти люблять у ньому стрибати. Але саме там можуть бути заховані небезпечні предмети, які хтось загубив або залишив.</p>
+        <ul>
+          <li>Стрибай лише там, де це дозволили дорослі.</li>
+          <li>Не лазь у чагарники біля доріг, покинутих будинків, лісосмуг.</li>
+          <li>Не грайся у «пошуки скарбів» у незнайомих місцях.</li>
+        </ul>`},
+      {i:"🗣️",t:"Правило «Стій — Відійди — Розкажи»",
+       body:`<p>Якщо ти щось побачив і тобі стало страшно або цікаво — запам’ятай три кроки:</p>
+        <ul>
+          <li><span class="pill">1. СТОП</span> Зупинись. Не підходь ближче.</li>
+          <li><span class="pill">2. ВІДІЙДИ</span> Повільно повернись назад тим шляхом, яким прийшов.</li>
+          <li><span class="pill">3. РОЗКАЖИ</span> Остаточно повідом дорослому: мамі, татові, вчителю, поліцейському (102).</li>
+        </ul>
+        <p>Дорослі подзвонять у ДСНС — <b>101</b>, і приїдуть спеціальні люди, які знають, що робити.</p>`},
+      {i:"🚧",t:"Обгороджені місця — не заходь",
+       body:`<p>Якщо ти бачиш <b>стрічку, паркан, табличку з червоним кольором або написом «Обережно!», «Міни», «Небезпечно»</b> — не заходь туди ніколи.</p>
+        <ul>
+          <li>Не знімай стрічку.</li>
+          <li>Не пролазь під паркан.</li>
+          <li>Не слухай друзів, які кажуть: «Та нічого там немає».</li>
+        </ul>`},
+      {i:"🌳",t:"Ліс, поле та посадка — тільки з дорослими",
+       body:`<p>Восени багато людей ходять по гриби та ягоди. Але ліси, поля та посадки — найнебезпечніші зони.</p>
+        <ul>
+          <li>Ходи в ліс лише з дорослими, які знають безпечні стежки.</li>
+          <li>Не відходь від дорослих далеко.</li>
+          <li>Не збирай ягоди чи гриби біля доріг, у чагарниках, на узліссях.</li>
+        </ul>`},
+      {i:"💥",t:"Почув вибух — лягай і закривай голову",
+       body:`<p>Якщо ти почув <b>гучний вибух</b> поруч:</p>
+        <ul>
+          <li>Негайно лягай на землю, краще в ямку чи канаву.</li>
+          <li>Закрий голову руками, рот трохи відкрий (щоб вуха не постраждали).</li>
+          <li>Не піднімайся одразу — почекай кілька хвилин, поки все затихне.</li>
+          <li>Коли стане тихо — повзи до безпечного місця, не встаючи.</li>
+        </ul>`}
+    ]
+  },
+  rules:[
+    {i:"🚦",t:"Дорога — тільки за руку з дорослим",sub:"Пішохідний перехід",
+     body:`<p>Переходь вулицю по «зебрі» й на зелене світло, <b>тримаючись за руку дорослого</b>. Перед кроком: подивись ліворуч, потім праворуч, а потім ще раз ліворуч.</p>
+      <ul>
+        <li>Не біжи через дорогу — іди спокійним кроком.</li>
+        <li>Навіть на зелене світло переконайся, що всі машини зупинилися.</li>
+        <li>Не вибігай на дорогу з-за припаркованого авто — водій тебе не бачить.</li>
+      </ul>
+      <div class="warn">Восени темніє рано, а мокра дорога — слизька. Машинам треба більше часу, щоб зупинитись.</div>`},
+    {i:"🦺",t:"Світись у темряві",sub:"Видимість на дорозі",
+     body:`<p>На рюкзаку та куртці обов’язково має бути <b>світловідбивач (флікер)</b>. Восени темніє рано — яскравий одяг робить тебе помітним для водія.</p>
+      <ul>
+        <li>Флікер робить тебе помітним з відстані <b>100–150 метрів</b> замість 20–30.</li>
+        <li>Прикріпи світловідбивачі спереду, ззаду і з боків рюкзака.</li>
+        <li>Носи світлу або яскраву шапку чи шарф.</li>
+        <li>Візьми маленький ліхтарик у кишеню.</li>
+      </ul>`},
+    {i:"🙅",t:"Незнайомець — це «стоп»",sub:"Безпека від чужих людей",
+     body:`<p>Нічого не бери з чужих рук і нікуди не йди з незнайомцем, навіть «показати цуценя» чи «поїхати до мами».</p>
+      <ul>
+        <li><b>Голосно скажи «НІ!»</b> і біжи до людей.</li>
+        <li>Не підходь до машини, якщо хтось кличе зсередини.</li>
+        <li>Запам’ятай: дорослі НЕ просять допомоги у дітей — вони просять у інших дорослих.</li>
+      </ul>
+      <div class="warn">Якщо хтось намагається тебе схопити — кричи «ЦЕ НЕ МІЙ ТАТО!» та кусайся, дряпайся, виривайся.</div>`},
+    {i:"📞",t:"Знай свої номери напам’ять",sub:"Контакти та екстрені служби",
+     body:`<p>Телефон мами й тата, своя адреса та екстрені номери — <b>112, 101, 102, 103</b>.</p>
+      <ul>
+        <li>Носи в кишені картку з контактами (на випадок, якщо телефон розрядиться).</li>
+        <li>Запам’ятай свою повну адресу та як її назвати диспетчеру.</li>
+        <li>Під час дзвінка в екстрену службу: назви своє ім’я, що сталося, точну адресу, не клади слухавку першим.</li>
+      </ul>`},
+    {i:"🧭",t:"Загубився — стій на місці",sub:"Що робити, коли один",
+     body:`<p>Не біжи шукати вихід сам. Батьки повернуться туди, де тебе бачили востаннє.</p>
+      <ul>
+        <li>Звернись до <b>поліцейського, охоронця, продавця</b> або до <b>мами з дітьми</b>.</li>
+        <li>Скажи своє ім’я та телефон батьків.</li>
+        <li>Не йди з чужими людьми, навіть якщо вони добрі.</li>
+      </ul>`},
+    {i:"🏠",t:"Двері завжди замкнені",sub:"Коли ти сам удома",
+     body:`<p>Якщо ти сам удома, не відчиняй нікому: ні «сусіду», ні «майстру», ні «поліцейському». Одразу телефонуй батькам.</p>
+      <ul>
+        <li>Не кажи нікому по телефону, що ти сам удома.</li>
+        <li>Не відкривай двері навіть на ланцюжок.</li>
+        <li>Якщо хтось довго стукає — подзвони 102.</li>
+      </ul>`},
+    {i:"🍄",t:"Не куштуй незнайоме",sub:"Природа восени",
+     body:`<p>Ягоди, гриби та рослини в парку — не їжа. Не гладь безпритульних тварин.</p>
+      <ul>
+        <li>Не їж нічого, що знайшов на вулиці.</li>
+        <li>Не гладь безпритульних собак і котів — вони можуть вкусити чи подряпати.</li>
+        <li>Не чіпай мертвих тварин — поклич дорослого.</li>
+      </ul>`},
+    {i:"🍂",t:"Обережно: листя й калюжі",sub:"Слизька дорога",
+     body:`<p>Мокре листя — дуже слизьке, а калюжі можуть приховувати яму або скло.</p>
+      <ul>
+        <li>Не біжи по мокрому листю — впадеш.</li>
+        <li>Обходь калюжі або йди по краю дуже обережно.</li>
+        <li>Не грайся біля проїзної частини й не вибігай за м’ячем на дорогу.</li>
+      </ul>`}
+  ],
+  quiz:[
+    {q:"Ти підійшов до пішохідного переходу разом із мамою. Світлофор зелений, але одна машина ще котиться. Що ти зробиш?",
+     o:["Швиденько перебіжу, поки машина далеко","Зачекаю, поки всі машини зупиняться, і піду за руку з мамою","Піду, дивлячись у телефон"],c:1,
+     why:"Навіть на зелене світло треба переконатися, що всі водії зупинилися. Молодші школярі переходять дорогу лише за руку з дорослим."},
+    {q:"Ти побачив у купі осіннього листя щось блискуче, схоже на старий телефон. Що ти зробиш?",
+     o:["Підніму й понесу показати мамі","Не чіпаю, відходжу назад тим самим шляхом і кажу дорослому","Візьму палицю й посуну, щоб подивитись ближче"],c:1,
+     why:"Під листям може бути вибухонебезпечний предмет. Жодних палиць, рук і ніг — тільки відійти й повідомити дорослого, який викличе ДСНС (101)."},
+    {q:"Незнайомий чоловік біля школи каже: «Ходімо, я покажу тобі маленьке цуценя за рогом». Твої дії?",
+     o:["Піду подивитись — це ж цікаво","Голосно скажу «Ні!», відійду до людей і одразу розповім учителю чи батькам","Візьму в нього цукерку і піду додому"],c:1,
+     why:"Дорослі не кличуть чужих дітей «подивитись цуценя». Правильно: відмовитись, відійти в безпечне людне місце й розповісти дорослому."},
+    {q:"Ти загубився у великому торговому центрі. Що найбезпечніше зробити?",
+     o:["Піду сам шукати вихід на вулицю","Стану на місці та звернусь до працівника магазину, охоронця або до мами з дітьми","Піду за будь-яким відвідувачем"],c:1,
+     why:"Батьки зазвичай повертаються туди, де тебе бачили востаннє. Допомогу треба просити лише у працівників або жінок із дітьми."},
+    {q:"На вулиці сутінки, а тобі ще йти додому. Як стати помітним для водіїв?",
+     o:["Одягну темну куртку, щоб не бруднитись","Прикріплю світловідбивач на рюкзак і візьму ліхтарик","Нічого не робитиму, водії й так уважні"],c:1,
+     why:"Флікер робить пішохода помітним із 100–150 метрів замість 20–30. Восени це найпростіший спосіб уберегтись."},
+    {q:"Ти сам удома. У двері стукають і кажуть: «Відчини, я сусід, тобі посилка». Твої дії?",
+     o:["Відчиню — це ж сусід","Не відчиняю, телефоную батькам і кажу, що нікого не пускаю","Відчиню ланцюжок і визирну"],c:1,
+     why:"Двері не відчиняють нікому, навіть «знайомим» голосам. Одразу дзвони батькам — це твоє головне правило, коли ти сам удома."}
+  ],
+  check:[
+    "Я знаю напам’ять номери телефонів мами й тата.",
+    "Я знаю свою домашню адресу та можу її назвати дорослому.",
+    "Я переходжу дорогу лише за руку з дорослим і лише по «зебрі».",
+    "На моєму рюкзаку чи куртці є світловідбивач.",
+    "Я не розмовляю з незнайомцями і нікуди з ними не йду.",
+    "Я знаю номери 112, 101, 102, 103 і розумію, коли потрібно телефонувати.",
+    "Я не граюся біля дороги й не вибігаю за м’ячем на проїжджу частину.",
+    "Я знаю правило «Стій — Відійди — Розкажи», якщо побачу підозрілий предмет.",
+    "Я не відчиняю двері, коли сам удома, і одразу дзвоню батькам.",
+    "Я завжди кажу дорослим, куди і з ким іду, і не стрибую у купах листя."
+  ],
+  parents:[
+    {i:"🚨",t:"Мінна безпека — говори регулярно",b:["Пройдіть разом правило «Стій — Відійди — Розкажи».","Покажіть реальні фото небезпечних предметів (з офіційних сайтів ДСНС) — дитина має їх розпізнавати.","Нагадайте: жодної «цікавинки» з землі не брати.","Купіть дитячу книжку з мінної безпеки або подивіться мультфільм від ДСНС."]},
+    {i:"🗺️",t:"Тренуйте маршрут разом",b:["Пройдіть дорогу до школи й назад 3–4 рази різними шляхами.","Покажіть «зебру», світлофор, безпечні місця очікування.","Нехай дитина сама «веде» вас за руку і коментує свої дії."]},
+    {i:"📜",t:"Домовленість замість довгих заборон",b:["Правила мають бути короткими, зрозумілими й незмінними.","Проговоріть: куди, з ким і на скільки йде дитина.","Домовтесь про сигнал, яким дитина повідомить, що все гаразд."]},
+    {i:"🎭",t:"Репетиція сценаріїв «Ні!»",b:["Розігруйте ситуації: «цукерка від незнайомця», «мама попросила забрати тебе зі школи», «допоможи знайти кицю».","Тренуйте гучний голос, крок назад і рух до людей.","Хваліть за будь-яку правильну реакцію."]},
+    {i:"🦺",t:"Видимість восени",b:["Флікери на рюкзаку, куртці, рукавах і взутті.","Ліхтарик у кишені, світла шапка чи шарф.","Перевіряйте, чи не закриває капюшон боковий зір."]},
+    {i:"📇",t:"Контакти, які дитина знає",b:["Номери батьків — напам’ять, а не лише в телефоні.","Картка з контактами в кишені куртки та в чохлі рюкзака.","112 — єдиний номер, який треба пам’ятати першим."]}
+  ],
+  memo:[
+    "Переходь дорогу тільки за руку з дорослим, по «зебрі» та на зелене світло.",
+    "Носи світловідбивач на рюкзаку й куртці — восени рано темніє.",
+    "Не розмовляй з незнайомцями, нічого не бери й нікуди з ними не йди.",
+    "Правило «Стій — Відійди — Розкажи» при підозрілому предметі.",
+    "Загубився — стій на місці та проси допомоги у працівника або мами з дітьми.",
+    "Сам удома — не відчиняй двері нікому, одразу дзвони батькам.",
+    "Знай напам’ять: 112, 101, 102, 103 та телефони батьків."
+  ]
+},
+{
+  id:"g57", emoji:"🍂", title:"5–7 класи", art:"art57",
+  tagline:"Практичні ситуації, самостійні рішення та відповідальна поведінка.",
+  color:"#c8552f", soft:"#fbe7de", ink:"#8c3316",
+  mine:{
+    lead:"Підлітки часто ходять у незнайомі місця — лісосмуги, покинуті будинки, береги річок. Саме там найвищий ризик натрапити на вибухонебезпечні предмети. Знання правил рятує життя.",
+    triad:[
+      {e:"🛑",t:"ВИЗНАЙ",d:"Навчись розпізнавати небезпечні предмети та зони."},
+      {e:"🚶",t:"ВІДІЙДИ",d:"Не біжи, не кричи — спокійно повертайся тим самим шляхом."},
+      {e:"📱",t:"ПОВІДОМ",d:"Дзвони 101 (ДСНС) або 102 (поліція) і назви точне місце."}
+    ],
+    items:[
+      {i:"💣",t:"Як виглядають вибухонебезпечні предмети",
+       body:`<p>Вибухонебезпечні предмети (ВНП) бувають різні. Знати, як вони виглядають — обов’язок кожного підлітка:</p>
+        <ul>
+          <li><b>Міни:</b> круглі, циліндричні, пластмасові чи металеві, часто із «вусиками» чи розтяжками.</li>
+          <li><b>Артснаряди:</b> схожі на великі циліндри з металу, іноді з хвостовим оперенням.</li>
+          <li><b>Гранати:</b> яйцеподібні або циліндричні, з важелем чи чекою.</li>
+          <li><b>Касетні боєприпаси:</b> маленькі циліндри, схожі на балончики, ручки, іграшки.</li>
+          <li><b>Розтяжки:</b> тонкий дріт, нитка, прив’язана між деревами чи кущами.</li>
+        </ul>
+        <div class="warn">Під осіннім листям, у багнюці, в калюжах їх майже не видно. Якщо щось стирчить із землі — не чіпай.</div>`},
+      {i:"🚫",t:"Де найбільша небезпека",
+       body:`<p>Найчастіше небезпечні предмети знаходять у таких місцях:</p>
+        <ul>
+          <li>Лісосмуги, посадки, покинуті поля.</li>
+          <li>Береги річок, озер, болотисті ділянки.</li>
+          <li>Покинуті будинки, підвали, дахи, будівництва.</li>
+          <li>Місця, де були бої або обстріли.</li>
+          <li>Узбіччя доріг, канави, яри.</li>
+        </ul>
+        <p>Якщо в місцевості колись були бойові дії — там небезпечно навіть через роки.</p>`},
+      {i:"🚧",t:"Знаки небезпеки — не ігноруй",
+       body:`<p>Офіційні знаки мінної небезпеки треба знати:</p>
+        <ul>
+          <li>Червоний квадрат із білим черепом і кістками.</li>
+          <li>Червона стрічка, паркан, кілки з написом «Міни», «Обережно».</li>
+          <li>Таблички з написом «Stop! Mines!», «Небезпечна зона».</li>
+        </ul>
+        <p><b>Ніколи не знімай</b> стрічку, не перелазь через паркан, не ігноруй знаки заради «гарного фото» чи «коротшого шляху».</p>`},
+      {i:"📱",t:"Алгоритм дій при виявленні",
+       body:`<p>Якщо ти побачив підозрілий предмет — дій за чітким алгоритмом:</p>
+        <ul>
+          <li><span class="pill">1. ЗУПИНИСЬ</span> Не підходь ближче, не чіпай нічим.</li>
+          <li><span class="pill">2. ВІДІЙДИ</span> Повільно назад тим самим шляхом, дивлячись під ноги.</li>
+          <li><span class="pill">3. ЗАПАМ’ЯТАЙ</span> Орієнтири місця: будинок, стовп, магазин, дерево.</li>
+          <li><span class="pill">4. ПОПЕРЕДЬ ІНШИХ</span> Скажи перехожим, щоб теж не підходили.</li>
+          <li><span class="pill">5. ДЗВОНИ</span> 101 (ДСНС) або 102 (поліція). Назви: що бачиш, точну адресу чи орієнтири, своє ім’я та номер телефону.</li>
+        </ul>`},
+      {i:"💥",t:"Якщо стався вибух поруч",
+       body:`<p>Навіть якщо вибух стався далеко від тебе, дій швидко і чітко:</p>
+        <ul>
+          <li>Негайно лягай на землю обличчям вниз, краще в ямку.</li>
+          <li>Закрий голову руками, рот трохи відкрий (захист перетинок вуха).</li>
+          <li>Не піднімайся одразу — почекай 1–2 хвилини, поки все затихне (можуть бути повторні вибухи).</li>
+          <li>Повзи до безпечного місця, не встаючи на ноги.</li>
+          <li>Коли станеш — перевір себе та оточуючих: чи є поранення, кровотечі.</li>
+          <li>Дзвони 103 (швидка) і 101 (ДСНС).</li>
+        </ul>`},
+      {i:"🧭",t:"Безпечні маршрути восени",
+       body:`<p>Восени підлітки часто шукають «цікаві» місця для прогулянок, фото чи зйомки відео. Але будь-яка зона, де ти не був із батьками, — потенційно небезпечна.</p>
+        <ul>
+          <li>Ходи лише знайомими освітленими дорогами.</li>
+          <li>Не йди «коротким шляхом» через посадки чи покинуті будівлі.</li>
+          <li>Не роби фото/відео на фоні знаків мінної небезпеки — це смертельно.</li>
+          <li>Повідомляй батькам точний маршрут і час повернення.</li>
+        </ul>`}
+    ]
+  },
+  rules:[
+    {i:"🗺️",t:"Свій безпечний маршрут",sub:"Узгоджений шлях до школи та додому",
+     body:`<p>Узгодь із батьками шлях: <b>освітлений, з переходами й людьми</b>. Не змінюй його без домовленості та повідомляй, де ти і коли повернешся.</p>
+      <ul>
+        <li>Завжди повідомляй батьків, якщо затримуєшся хоча б на 10 хвилин.</li>
+        <li>Уникай «коротких шляхів» через лісосмуги, будівництва, покинуті території.</li>
+        <li>У темну пору ходи тільки вулицями з ліхтарями.</li>
+      </ul>`},
+    {i:"🎧",t:"Вулиця — без навушників",sub:"Дорожня безпека",
+     body:`<p>Перед переходом <b>зніми навушники й сховай телефон</b>. Ти маєш чути сигнал, гальма та бачити дорогу, а не екран.</p>
+      <ul>
+        <li>Навіть на «зебрі» переконайся, що водії тебе бачать і зупинилися.</li>
+        <li>Не переходь дорогу, дивлячись у телефон — навіть 2 секунди достатньо для трагедії.</li>
+        <li>Пам’ятай: восени темніє рано і дорога слизька — машині треба 2–3 рази більше часу на гальмування.</li>
+      </ul>`},
+    {i:"🚲",t:"Колеса за правилами",sub:"Велосипед і самокат",
+     body:`<p>Шолом, світловідбивачі та ліхтар — обов’язкові. Через перехід — <b>спішившись, ведучи велосипед чи самокат у руках</b>.</p>
+      <ul>
+        <li>Їзда по пішохідному переходу заборонена і смертельно небезпечна.</li>
+        <li>Перевіряй гальма, тиск у шинах, світло перед виїздом.</li>
+        <li>Не їзди по тротуару, де багато пішоходів, і по проїжджій частині без потреби.</li>
+      </ul>`},
+    {i:"🚧",t:"Небезпечні зони — ні",sub:"Будівництва, дахи, водойми",
+     body:`<p>Будівництва, дахи, підвали, залізниця, покинуті будинки, водойми. Це не місце для ігор, челенджів і «гарних фото».</p>
+      <ul>
+        <li>Дахи та балкони — смертельно. Один невірний крок — і все.</li>
+        <li>Будівництва — ями, арматура, падіння предметів.</li>
+        <li>Водойми восени — тонка крига, слизькі береги, несподівані глибини.</li>
+        <li>Залізниця — потяг не встигає загальмувати, навіть якщо тебе побачить.</li>
+      </ul>
+      <div class="warn">«Красиве фото для соцмереж» не варте життя. Жоден лайк того не коштує.</div>`},
+    {i:"💬",t:"Вміти сказати «ні»",sub:"Тиск однолітків",
+     body:`<p>Сигарети, вейпи, алкоголь, энергетики — навіть якщо «усі так роблять». <b>Відмова — це сила, а не слабкість</b>.</p>
+      <ul>
+        <li>Готові фрази: «Мені це не потрібно», «Я пас», «У мене важливіші речі».</li>
+        <li>Вейпи та тютюн у підлітковому віці особливо шкодять легеням і мозку.</li>
+        <li>Енергетики + алкоголь = небезпечна для серця суміш.</li>
+        <li>Справжні друзі не змушують тебе робити те, що шкодить.</li>
+      </ul>`},
+    {i:"🔐",t:"Цифровий замок",sub:"Онлайн-безпека",
+     body:`<p>Не ділися паролем, геолокацією та особистими фото. Не зустрічайся з людиною, яку знаєш лише онлайн.</p>
+      <ul>
+        <li>Онлайн-«друг» може бути дорослим зловмисником (це називається <b>грумінг</b>).</li>
+        <li>Запит «нікому не кажи» — головна ознака небезпеки.</li>
+        <li>Не надсилай особисті фото — їх можуть використати для шантажу.</li>
+        <li>Увімкни двофакторну автентифікацію на всіх акаунтах.</li>
+      </ul>`},
+    {i:"🆘",t:"Чіткий виклик допомоги",sub:"101, 102, 103, 104, 112",
+     body:`<p>Коли дзвониш в екстрену службу — говори <b>спокійно і чітко</b>:</p>
+      <ul>
+        <li><b>Що сталося:</b> пожежа, ДТП, поранення, підозрілий предмет.</li>
+        <li><b>Де саме:</b> вулиця, номер будинку, орієнтири (магазин, зупинка).</li>
+        <li><b>Скільки людей</b> потребує допомоги, їх стан.</li>
+        <li><b>Своє ім’я та номер телефону.</b></li>
+        <li>Не клади слухавку першим — диспетчер може задати важливі питання.</li>
+      </ul>`},
+    {i:"🍂",t:"Осінь: слизько й темно",sub:"Сезонні ризики",
+     body:`<p>Флікер і ліхтарик, обережний крок на мокрому листі, запас часу на дорогу.</p>
+      <ul>
+        <li>Краще прийти пізніше, ніж бігцем через дорогу.</li>
+        <li>Не бігай по мокрому листю — воно слизьке, як лід.</li>
+        <li>Одягай непромокальне взуття з протектором.</li>
+        <li>Капюшон не повинен закривати боковий зір.</li>
+      </ul>`}
+  ],
+  quiz:[
+    {q:"Ти побачив у лісосмузі металевий циліндр, що стирчить із листя. Твої дії?",
+     o:["Підійду ближче, подивлюсь і сфотографую для друзів","Зупинюсь, повільно відійду назад тим самим шляхом і подзвоню 101","Візьму палицю й витягну його, щоб подивитись"],c:1,
+     why:"Це може бути артснаряд або міна. Жодних палиць, рук, фото. Відійти — повідомити 101 (ДСНС) — попередити інших."},
+    {q:"Ти йдеш додому і бачиш коротший шлях — через будівництво та покинуту територію, де немає освітлення. Твоє рішення?",
+     o:["Піду коротшим шляхом, щоб швидше бути вдома","Піду звичним освітленим маршрутом, навіть якщо це довше","Зайду всередину, щоб зробити фото для соцмереж"],c:1,
+     why:"Будівництва й покинуті будинки — зони підвищеної небезпеки. Безпечний маршрут завжди важливіший за короткий."},
+    {q:"Знайомий із мережі пише: «Давай сьогодні ввечері зустрінемось у парку, тільки нікому не кажи». Що ти зробиш?",
+     o:["Піду, адже ми давно спілкуємось","Не піду, розповім батькам або вчителю й заблокую цю людину","Домовлюсь, але попрошу друга нічого не казати"],c:1,
+     why:"Секретність і прохання «нікому не казати» — головна ознака грумінгу. Людина онлайн може бути не тією, за кого себе видає."},
+    {q:"Ти переходиш дорогу, у вухах навушники з гучною музикою, у руці телефон. Як правильно?",
+     o:["Нічого не змінювати — я й так уважний","Зняти навушники, сховати телефон, подивитись ліворуч-праворуч","Перебігти швидше, поки горить зелене"],c:1,
+     why:"Навушники й телефон забирають слух і увагу. Навіть на «зебрі» треба впевнитись, що водії тебе бачать і зупинились."},
+    {q:"У компанії тобі пропонують спробувати вейп: «Усі ж пробують, тобі що, слабо?»",
+     o:["Спробую, щоб не виділятись","Спокійно відмовлюсь («Мені це не потрібно») і відійду від компанії","Спробую й викладу відео в соцмережу"],c:1,
+     why:"Вейпи й тютюн у підлітковому віці особливо шкодять легеням і мозку. Уміння відмовити — ознака дорослості."},
+    {q:"Під час прогулянки ти почув гучний вибух за 200 метрів. Що найправильніше зробити?",
+     o:["Підняти телефон і зняти відео для соцмереж","Негайно лягти на землю обличчям вниз, закрити голову руками, дочекатись тиші й повзти в безпечне місце","Побігти подивитись, що сталося"],c:1,
+     why:"Можуть бути повторні вибухи. Лягай, закрий голову, рот відкрий. Тільки після тиші повзи в безпечне місце і дзвони 101/103."}
+  ],
+  check:[
+    "Я маю узгоджений з батьками безпечний маршрут і час повернення.",
+    "Я знімаю навушники та ховаю телефон, коли переходжу дорогу.",
+    "У мене є світловідбивач або ліхтарик для темної пори.",
+    "Я знаю, як виглядають вибухонебезпечні предмети, і правило «Стій — Відійди — Повідом».",
+    "Я не зустрічаюся з людьми, яких знаю лише онлайн.",
+    "Я вмію сказати «ні» й піти, якщо пропонують сигарети, вейп, алкоголь чи енергетик.",
+    "Я знаю номери 112, 101, 102, 103 і вмію чітко назвати адресу події.",
+    "Я не заходжу на будівництва, дахи, залізницю, до покинутих будинків і водойм.",
+    "Мої акаунти захищені паролем і двофакторною автентифікацією.",
+    "Я їжджу на велосипеді/самокаті в шоломі та спішуюсь на переході."
+  ],
+  parents:[
+    {i:"🚨",t:"Мінна безпека — говоріть відверто",b:["Разом подивіться матеріали ДСНС про типи боєприпасів.","Розкажіть про реальні випадки серед підлітків — це діє краще за абстрактні заборони.","Обговоріть правило: фото на фоні небезпечних знаків — це смертельно.","Знайте, куди дитина ходить і з ким. Перевіряйте маршрут."]},
+    {i:"🤝",t:"Довіра плюс розумні межі",b:["Узгодьте час повернення та «контрольні» повідомлення.","Геолокація — лише за згодою дитини і як інструмент безпеки, а не стеження.","Пояснюйте причину правила: це безпека, а не недовіра."]},
+    {i:"🚬",t:"Говоріть про тиск однолітків",b:["Запитуйте: «Як би ти вчинив, якби запропонували вейп або енергетик?»","Разом придумайте 2–3 готові фрази відмови.","Обговорюйте, що популярність у компанії не варта здоров’я."]},
+    {i:"📵",t:"Цифрові межі замість заборон",b:["Поговоріть про приватність, паролі й особисті фото, які не можна надсилати нікому.","Поясніть: онлайн-«друг» може бути дорослим зловмисником.","Домовтесь, що дитина може прийти до вас без покарання."]},
+    {i:"👀",t:"Помічайте тривожні зміни",b:["Різкий спад настрою, замкненість, небажання йти до школи.","Таємничість із телефоном, нові «дорогі» речі, невідомі дорослі контакти.","Реагуйте розмовою, а не допитом чи конфіскацією гаджета."]},
+    {i:"🚲",t:"Транспорт і спорядження",b:["Купуйте шолом разом — дитина має обрати його сама.","Перевірте світло, гальма, світловідбивачі на велосипеді чи самокаті.","Проговоріть правило: через перехід — тільки пішки з транспортом у руках."]}
+  ],
+  memo:[
+    "Ходжу узгодженим освітленим маршрутом і повідомляю батькам, де я.",
+    "Перед переходом знімаю навушники й ховаю телефон.",
+    "Через перехід велосипед чи самокат веду в руках, у шоломі.",
+    "Знаю алгоритм «Визнай — Відійди — Повідом (101/102)» при виявленні ВНП.",
+    "Не заходжу на будівництва, дахи, залізницю, до водойм і покинутих будинків.",
+    "Вмію сказати «ні» вейпам, сигаретам, алкоголю та енергетикам.",
+    "Не зустрічаюся з людьми, яких знаю лише онлайн, і не надсилаю особисті фото."
+  ]
+},
+{
+  id:"g811", emoji:"🌰", title:"8–11 класи", art:"art811",
+  tagline:"Критичне мислення, оцінювання ризиків, цифрова безпека та відповідальність.",
+  color:"#5d7a52", soft:"#e8efe2", ink:"#3c5235",
+  mine:{
+    lead:"Україна є однією з найбільш замінованих країн світу. Розмінування триватиме десятиліттями. Старшокласники мають знати не лише правила поведінки, а й основи першої допомоги при мінно-вибухових травмах — це може врятувати чиєсь життя.",
+    triad:[
+      {e:"🔍",t:"АНАЛІЗУЙ",d:"Оціни обстановку: тип предмета, зону, евакуаційний шлях."},
+      {e:"🚶",t:"ЕВАКУЮЙСЯ",d:"Відійди мінімум на 300 м тим самим шляхом, подалі від вікон."},
+      {e:"📞",t:"КООРДИНУЙ",d:"101 — ДСНС, 102 — поліція, 103 — швидка. Допомагай іншим безпечно."}
+    ],
+    items:[
+      {i:"💣",t:"Класифікація вибухонебезпечних предметів (ВНП)",
+       body:`<p>ВНП поділяються на категорії, і кожна має свою небезпеку:</p>
+        <ul>
+          <li><b>Протипіхотні міни</b> (ОЗМ-5, ПФМ-1 «пелюстка», МОН-50) — спрацьовують на натискання або розтяжку. «Пелюстки» часто лежать на землі й маскуються під сміття.</li>
+          <li><b>Протитанкові міни</b> — спрацьовують під вагою від 150 кг. Небезпечні навіть при спробі їх перемістити.</li>
+          <li><b>Артснаряди, мінометні міни, ракети</b> — можуть бути нерозірваними навіть через роки.</li>
+          <li><b>Касетні боєприпаси</b> — маленькі суббоєприпаси, що розкидані на великій площі, часто не вибухають одразу.</li>
+          <li><b>Розтяжки та саморобні вибухові пристрої (СВП)</b> — маскуються під побутові предмети.</li>
+          <li><b>Авіабомби (ФАБ, КАБ)</b> — можуть бути закопані в землю і вибухати від найменшого поштовху.</li>
+        </ul>
+        <div class="warn">Будь-який предмет, який виглядає «не на своєму місці», — вважай небезпечним. Не торкайся, не переміщуй, не розбирай.</div>`},
+      {i:"🗺️",t:"Зони підвищеного ризику",
+       body:`<p>Деякі місця є критично небезпечними навіть роками після завершення бойових дій:</p>
+        <ul>
+          <li><b>Деокуповані території</b> — Харківщина, Херсонщина, частини Донеччини, Луганщини, Запоріжжя.</li>
+          <li><b>Лісосмуги та поля</b> — саме тут найчастіше знаходять розтяжки та касетні боєприпаси.</li>
+          <li><b>Водойми та береги</b> — міни зносяться водою на нові місця.</li>
+          <li><b>Покинуті будинки, підвали, дахи</b> — улюблені місця для встановлення СВП.</li>
+          <li><b>Місця колишніх обстрілів</b> — навіть якщо «все спокійно», земля може бути небезпечною.</li>
+        </ul>
+        <p>Перевіряй офіційні карти ДСНС та додаток «Мінна безпека» перед поїздкою в незнайоме місце.</p>`},
+      {i:"⚙️",t:"Професійний алгоритм при виявленні ВНП",
+       body:`<p>Чіткий алгоритм дій, який використовує ДСНС:</p>
+        <ul>
+          <li><span class="pill">1. ЗУПИНИСЬ</span> Припини рух. Не підходь ближче. Не чіпай.</li>
+          <li><span class="pill">2. ОЦІНИ ВІДСТАНЬ</span> Мінімальна безпечна дистанція — <b>300 метрів</b>. Для великих боєприпасів — до 1 км.</li>
+          <li><span class="pill">3. ВІДСТУП</span> Відходь тим самим шляхом, яким прийшов (там точно безпечно). Дивись під ноги.</li>
+          <li><span class="pill">4. ПОПЕРЕДЬ</span> Спокійно попередь оточуючих, не кричи й не панікуй.</li>
+          <li><span class="pill">5. ЗАФІКСУЙ ОРИЄНТИРИ</span> Запам’ятай або сфотографуй з БЕЗПЕЧНОЇ відстані (якщо дозволяє ситуація): будинок, стовп, координати з телефону.</li>
+          <li><span class="pill">6. ДЗВОНИ 101</span> Опиши: що бачиш, де саме, як дістатись, чи є інші люди поруч.</li>
+          <li><span class="pill">7. ОХОРОНЯЙ ЗОНУ</span> Якщо є можливість безпечно — познач місце стрічкою, гілками з відстані 300 м, щоб інші не підійшли.</li>
+        </ul>`},
+      {i:"🏥",t:"Мінно-вибухова травма: перша допомога",
+       body:`<p>Якщо хтось постраждав від вибуху — дій швидко, але <b>спочатку переконайся, що тобі нічого не загрожує</b> (повторні вибухи, розтяжки).</p>
+        <ul>
+          <li><b>Безпека рятувальника — перш за все.</b> Не ставай другою жертвою.</li>
+          <li><b>Дзвони 103 і 101</b> негайно.</li>
+          <li><b>Критична кровотеча:</b> накладжи джгут (Esmark, CAT) ВИЩЕ рани. Запиши точний час. Якщо нема джгута — тисни на рану.</li>
+          <li><b>Ампутація:</b> не знімай одяг з кукси, накрий стерильною тканиною, збережи відірвану частину в пакеті на льоду (не прямо в лід!).</li>
+          <li><b>Шок:</b> поклади постраждалого, підніми ноги, накрий теплою ковдрою. Не давай пити і їсти.</li>
+          <li><b>Не витягуй</b> осколки з рани — це може посилити кровотечу.</li>
+          <li>Постійно розмовляй із постраждалим — це зменшує паніку.</li>
+        </ul>`},
+      {i:"📊",t:"Інформаційна гігієна в мінній темі",
+       body:`<p>У соцмережах часто поширюють фейкові «карти мінних полів» і «поради саперів-любителів». Це смертельно небезпечно.</p>
+        <ul>
+          <li><b>Офіційні джерела:</b> сайт ДСНС, застосунок «Мінна безпека», сайт <b>mineinfo.com.ua</b>.</li>
+          <li>Не довіряй Telegram-каналам, які «знають усе» про розмінування.</li>
+          <li>Не поширюй фото знайдених боєприпасів — це може допомогти ворогу.</li>
+          <li>Не намагайся «сам розмінувати» — це робота професіоналів із спеціальною підготовкою.</li>
+        </ul>`},
+      {i:"⚖️",t:"Правова відповідальність",
+       body:`<p>Маніпуляції з ВНП мають правові наслідки:</p>
+        <ul>
+          <li>Спроба розібрати, перенести чи продати боєприпаси — <b>кримінальне правопорушення</b>.</li>
+          <li>Поширення інформації про розташування ВНП у соцмережах може кваліфікуватися як пособництво ворогу.</li>
+          <li>Зйомка на фоні небезпечних знаків «для контенту» — відповідальність за власне життя й приклад для інших.</li>
+          <li>Якщо ти знайшов ВНП — твоя відповідальність негайно повідомити ДСНС.</li>
+        </ul>`}
+    ]
+  },
+  rules:[
+    {i:"🧠",t:"Спочатку — оцінка ризику",sub:"STOP — THINK — ACT",
+     body:`<p>Перш ніж діяти, проаналізуй: <b>місце, час, компанію, свій стан, запасний план, заряд телефону</b> і те, як про це дізнаються батьки через рік.</p>
+      <ul>
+        <li>Формула <b>STOP</b>: Стій — Подумай — Оціни — Плануй.</li>
+        <li>Якщо ситуація виглядає «прикольно» або «екстремально» — це червоний прапорець.</li>
+        <li>Алкоголь і наркотики знижують здатність оцінювати ризики в рази.</li>
+      </ul>`},
+    {i:"🛡️",t:"Цифрова гігієна",sub:"Кібербезпека",
+     body:`<p>Унікальні паролі та двофакторна автентифікація, оновлення ПЗ, перевірка джерел новин.</p>
+      <ul>
+        <li><b>Фішинг:</b> посилання «Ваш акаунт заблоковано» — це пастка. Перевіряй статус в офіційному застосунку.</li>
+        <li><b>Фейки:</b> запитай «Хто це написав? З якою метою? Хто на цьому заробляє?»</li>
+        <li><b>«Швидкі заробітки»:</b> 99% — це шахрайство або вербування.</li>
+        <li>Використовуй менеджер паролів (Bitwarden, 1Password).</li>
+      </ul>`},
+    {i:"⚖️",t:"Правова відповідальність",sub:"Відповідальність з 14 і 16 років",
+     body:`<p>За насильство, крадіжку, хуліганство, поширення особистих фото інших людей без згоди, кібербулінг і наркотики настає <b>юридична відповідальність</b>.</p>
+      <ul>
+        <li>З 14 років — відповідальність за тяжкі злочини (вбивство, зґвалтування, розбій, крадіжка в великих розмірах).</li>
+        <li>З 16 років — повна кримінальна відповідальність.</li>
+        <li>«Я не знав» не звільняє від наслідків.</li>
+        <li>Поширення особистих фото без згоди — кримінальне правопорушення (ст. 156-1 ККУ).</li>
+      </ul>`},
+    {i:"🚫",t:"Ні вживанню, ні п’яному керму",sub:"Алкоголь, тютюн, наркотики",
+     body:`<p>Алкоголь, тютюн, енергетики й наркотики руйнують здоров’я, самоконтроль і майбутнє.</p>
+      <ul>
+        <li>Не існує «безпечної дози» наркотиків.</li>
+        <li>Енергетики + алкоголь = смертельна суміш для серця.</li>
+        <li>Ніколи не сідай у авто до водія в стані сп’яніння — це кримінал і смерть.</li>
+        <li>Залежність може початися з першого вживання, особливо в підлітковому віці.</li>
+      </ul>`},
+    {i:"🚨",t:"Готовність до НС",sub:"Надзвичайні ситуації",
+     body:`<p>Знай найближче укриття від дому й школи, дотримуйся правила «дві стіни» під час обстрілу, умій надати першу допомогу та викликати 103.</p>
+      <ul>
+        <li><b>Правило «двох стін»:</b> коридор чи приміщення, де між тобою й вулицею дві стіни.</li>
+        <li>Май тривожну валізку: документи, вода, ліки, павербанк, ліхтар.</li>
+        <li>Пройди курс першої допомоги (Червоний Хрест, FAST, TCCC-цивільні курси).</li>
+        <li>Завжди май у телефоні ICE-контакти (In Case of Emergency).</li>
+      </ul>`},
+    {i:"🤝",t:"Згода, кордони, безпека в стосунках",sub:"Стосунки та цифрова безпека",
+     body:`<p>Будь-які стосунки — лише за <b>взаємною добровільною згодою</b>. Секстинг, шантаж і грумінг — злочини.</p>
+      <ul>
+        <li>«Ні» означає «ні» — завжди, у будь-який момент.</li>
+        <li>Надіслане особисте фото може стати інструментом шантажу на роки.</li>
+        <li>Зберігай докази шантажу, блокуй, звертайся до дорослих і 102.</li>
+        <li>Не знімай особисті відео — навіть «для себе», телефон можуть вкрасти чи зламати.</li>
+      </ul>`},
+    {i:"🧘",t:"Психічне здоров’я — теж безпека",sub:"Стрес, тривога, вигорання",
+     body:`<p>Стрес, тривога, панічні атаки й вигорання — сигнал просити допомогу.</p>
+      <ul>
+        <li>Шкільний психолог, лінія <b>106</b> (безкоштовна психологічна допомога), Lifeline Ukraine.</li>
+        <li>Звернення по допомогу — це сила, а не слабкість.</li>
+        <li>Регулярний сон, фізична активність і соціальні контакти — основа стійкості.</li>
+        <li>Обмежуй час у новинах — особливо перед сном.</li>
+      </ul>`},
+    {i:"📣",t:"Не будь байдужим свідком",sub:"Активна громадянська позиція",
+     body:`<p>Побачив булінг, насильство чи небезпеку — не знімай заради лайків.</p>
+      <ul>
+        <li>Втручайся безпечно: поклич дорослих, зателефонуй 102.</li>
+        <li>Підтримай постраждалого — це може врятувати людину.</li>
+        <li>Фіксуй докази кібербулінгу — скріни повідомлення.</li>
+        <li>Не будь частиною натовпу, який цькує — це співучасть.</li>
+      </ul>`}
+  ],
+  quiz:[
+    {q:"Ти знайшов у лісі предмет, схожий на велику гранату без чеки. Твої дії?",
+     o:["Сфотографую з різних ракурсів для друзів","Відійду мінімум на 300 метрів тим самим шляхом, зафіксую орієнтири, подзвоню 101 і попереджу інших","Спробую обережно перенести в безпечніше місце"],c:1,
+     why:"Це може бути вибухонебезпечний предмет. Безпечна дистанція — 300+ метрів. Жодного переміщення, фото зблизька чи «обережного огляду»."},
+    {q:"Поруч із тобою стався вибух, і людина впала з сильною кровотечею з ноги. Що робиш у першу чергу?",
+     o:["Підбіжу й одразу накладу джгут, не озираючись","Спочатку оціню власну безпеку (можливі повторні вибухи, розтяжки), потім підходжу і накладаю джгут вище рани, фіксуючи час, і викликаю 103","Витягну осколки, щоб зупинити кровотечу"],c:1,
+     why:"Безпека рятувальника — перш за все. Джгут вище рани з записом часу. Осколки НЕ витягувати — це посилить кровотечу."},
+    {q:"Онлайн-знайомий вимагає особисте фото й погрожує поширити ваше старе листування. Твої дії?",
+     o:["Надішлю фото, щоб він відстав, і нікому не розповім","Не надсилатиму, зроблю скріншоти, заблокую та повідомлю батькам/поліції (102)","Видалю акаунт і зроблю вигляд, що нічого не було"],c:1,
+     why:"Це шантаж (грумінг) — кримінальне правопорушення. Докази треба зберегти, а не видаляти."},
+    {q:"Друг, який випив, сідає за кермо й пропонує тебе підвезти. Що ти зробиш?",
+     o:["Поїду — він же недалеко і «все контролює»","Відмовлюсь, не сяду в авто й намагатимуся зупинити його; виклич таксі або 102, якщо він поїде","Сяду на заднє сидіння й нічого не скажу"],c:1,
+     why:"Керування в стані сп’яніння — кримінальне правопорушення і одна з головних причин смертельних ДТП."},
+    {q:"Ти отримуєш SMS: «Ваш акаунт заблоковано. Перейдіть за посиланням і введіть пароль та дані картки». Що це і як діяти?",
+     o:["Перейду за посиланням і введу дані","Це фішинг: не переходити, перевірити статус в офіційному застосунку","Перешлю друзям, щоб перевірити"],c:1,
+     why:"Ознаки фішингу: терміновість, страх, посилання зі схожим на офіційний доменом. Дані картки й паролі ніколи не вводять за посиланнями."},
+    {q:"У соцмережах тобі пропонують «легкі гроші» — знімати відео з певних локацій, зокрема з мінними знаками. Твоє рішення?",
+     o:["Зніму кілька відео — гроші непогані","Це може бути вербування ворогом або смертельно небезпечна задача — відмовляюся і повідомляю СБУ/поліцію","Поговорю з друзями, може це безпечно"],c:1,
+     why:"Це класична схема вербування або небезпечне завдання. Повідом СБУ (0 800 501 488) або 102."}
+  ],
+  check:[
+    "Я планую маршрут і час повернення, маю заряджений телефон або павербанк.",
+    "У мене ввімкнена двофакторна автентифікація, а паролі унікальні.",
+    "Я вмію розпізнати фішинг, фейк і маніпулятивне повідомлення.",
+    "Я знаю різницю між типами ВНП і алгоритм дій при їх виявленні.",
+    "Я знаю, де найближче укриття від мого дому та школи.",
+    "Я володію основами першої допомоги: джгут, тиск, СЛР.",
+    "Я розумію, що таке згода і яка відповідальність за секстинг.",
+    "Я маю номери ліній підтримки та знаю, коли звертатись.",
+    "Я ніколи не сідаю в авто до водія в стані сп’яніння.",
+    "Я вмію зафіксувати докази кібербулінгу й подати заяву."
+  ],
+  parents:[
+    {i:"🚨",t:"Мінна безпека — серйозна розмова",b:["Обговоріть класифікацію ВНП і алгоритм дій.","Пройдіть разом курс першої допомоги — навички рятування життя.","Перевірте офіційні карти замінованих територій разом.","Обговоріть небезпеку «контенту» на фоні мінних знаків."]},
+    {i:"🧭",t:"Партнерство, а не тотальний нагляд",b:["Підлітку потрібне обговорення ризиків, а не контроль кожного кроку.","Домовляйтесь про межі, причини цих меж і наслідки порушення.","Слухайте без оцінки — тоді до вас прийдуть із реальною проблемою."]},
+    {i:"⚖️",t:"Юридична грамотність",b:["Поясніть відповідальність з 14 і 16 років.","Обговоріть відповідальність за поширення особистих зображень без згоди.","Поговоріть про вербування через «легкі гроші» в соцмережах."]},
+    {i:"🎒",t:"Готовність до НС",b:["Разом знайдіть укриття та зберіть тривожну валізку.","Пройдіть курс першої допомоги удвох.","Вивчіть ICE-контакти в телефоні."]},
+    {i:"🔍",t:"Критичне мислення проти маніпуляцій",b:["Обговорюйте фейки, пропаганду та вербування.","Головне питання: «Хто це написав і з якою метою?»","Перевіряйте інформацію разом, а не забороняйте джерела."]},
+    {i:"💚",t:"Підтримка психічного здоров’я",b:["Не знецінюйте стрес, тривогу чи виснаження.","Пам’ятайте контакти шкільного психолога та ліній підтримки.","Звернення по допомогу — це сила, а не слабкість."]}
+  ],
+  memo:[
+    "Алгоритм при ВНП: зупинись → оціни → відійди 300 м → дзвони 101.",
+    "Володію основами першої допомоги: джгут, тиск на рану, СЛР.",
+    "Паролі унікальні, 2FA ввімкнена, фішинг розпізнаю.",
+    "Не надсилаю особисті фото і не піддаюся шантажу: докази + 102.",
+    "Знаю укриття та правило «двох стін» під час тривоги.",
+    "Не вживаю алкоголь, наркотики, не сідаю в авто до п’яного водія.",
+    "Пам’ятаю: стрес і тривога — привід звернутись до психолога."
+  ]
+}
+];
+
+const EMERGENCY = [
+  {n:"112",t:"Єдиний номер екстрених служб"},
+  {n:"101",t:"Пожежно-рятувальна служба (ДСНС)"},
+  {n:"102",t:"Поліція"},
+  {n:"103",t:"Швидка медична допомога"},
+  {n:"104",t:"Аварійна газова служба"}
+];
+
+const ART = {
+ art14:`<svg class="cat-art" viewBox="0 0 320 132" role="img" aria-label="Дитина йде за руку з дорослим">
+   <rect width="320" height="132" rx="16" fill="#fdf0dd"/>
+   <circle cx="268" cy="34" r="20" fill="#f6c98a"/>
+   <ellipse cx="160" cy="118" rx="130" ry="9" fill="#e9cfa8"/>
+   <g fill="#c98a4a" opacity=".55"><path d="M36 26c10-12 26-12 34 0-8 12-24 12-34 0z"/><path d="M96 58c8-10 20-10 27 0-7 10-19 10-27 0z"/></g>
+   <g><circle cx="126" cy="44" r="14" fill="#8d6242"/><path d="M108 112l5-42c2-13 25-13 27 0l5 42z" fill="#e08a2e"/>
+      <path d="M143 76c8 5 14 6 21 3" stroke="#8d6242" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+   <g><circle cx="188" cy="30" r="17" fill="#8d6242"/><path d="M166 112l6-52c3-16 32-16 35 0l6 52z" fill="#7d95c4"/>
+      <path d="M167 78c-8 4-14 5-21 2" stroke="#8d6242" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+   <g transform="translate(200,72)"><rect x="0" y="0" width="26" height="34" rx="7" fill="#c8552f"/><rect x="6" y="-6" width="14" height="8" rx="3" fill="#a8401f"/></g>
+   <g fill="#f6c98a"><circle cx="60" cy="104" r="4"/><circle cx="240" cy="104" r="4"/></g>
+ </svg>`,
+ art57:`<svg class="cat-art" viewBox="0 0 320 132" role="img" aria-label="Підліток із рюкзаком і велосипед">
+   <rect width="320" height="132" rx="16" fill="#fbe7de"/>
+   <circle cx="48" cy="30" r="18" fill="#f0b18f"/>
+   <ellipse cx="160" cy="118" rx="132" ry="9" fill="#eec9b6"/>
+   <g stroke="#5c6b7a" stroke-width="6" fill="none"><circle cx="238" cy="94" r="24"/><circle cx="286" cy="94" r="24"/>
+     <path d="M238 94l16-26h22l10 26M254 68l-6-10h14"/></g>
+   <g><circle cx="120" cy="42" r="15" fill="#7c5236"/><path d="M100 112l5-44c2-14 26-14 28 0l5 44z" fill="#c8552f"/>
+      <rect x="132" y="52" width="22" height="30" rx="8" fill="#8f3d1c"/></g>
+   <g><circle cx="176" cy="48" r="13" fill="#7c5236"/><path d="M158 112l4-38c2-12 22-12 24 0l4 38z" fill="#3f7a6b"/>
+      <rect x="188" y="58" width="18" height="26" rx="7" fill="#2c5d51"/></g>
+   <g fill="#c98a4a" opacity=".6"><path d="M54 78c8-10 20-10 27 0-7 10-19 10-27 0z"/><path d="M96 20c7-9 18-9 24 0-6 9-17 9-24 0z"/></g>
+ </svg>`,
+ art811:`<svg class="cat-art" viewBox="0 0 320 132" role="img" aria-label="Старшокласник і цифрова безпека">
+   <rect width="320" height="132" rx="16" fill="#e8efe2"/>
+   <g fill="#c3d3b8"><rect x="22" y="40" width="26" height="76" rx="4"/><rect x="54" y="22" width="30" height="94" rx="4"/><rect x="90" y="56" width="22" height="60" rx="4"/></g>
+   <ellipse cx="160" cy="118" rx="132" ry="9" fill="#cfdcc4"/>
+   <g><circle cx="150" cy="40" r="15" fill="#6d4a30"/><path d="M130 112l5-44c2-14 26-14 28 0l5 44z" fill="#5d7a52"/>
+      <path d="M172 62l22 10" stroke="#6d4a30" stroke-width="7" stroke-linecap="round"/></g>
+   <g transform="translate(190,52)"><rect x="0" y="0" width="30" height="48" rx="7" fill="#33413a"/><rect x="4" y="5" width="22" height="34" rx="4" fill="#9fd0a8"/></g>
+   <g transform="translate(236,34)"><path d="M28 4l22 9v20c0 16-11 26-22 31-11-5-22-15-22-31V13z" fill="#5d7a52" opacity=".9"/>
+      <path d="M18 33l8 8 16-16" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+   <g fill="#b08a4a" opacity=".55"><path d="M276 96c8-10 20-10 27 0-7 10-19 10-27 0z"/><path d="M120 18c7-9 18-9 24 0-6 9-17 9-24 0z"/></g>
+ </svg>`
+};
+
+let CAT = null;
+let quizState = {};
+let checkState = [];
+
+const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+
+(function buildLeaves(){
+  const host = document.getElementById("leaves");
+  const colors = ["#d9743a","#e0a13a","#b4552d","#8c9a4a","#c98b3a","#a9632f"];
+  for(let i=0;i<20;i++){
+    const size = 13+Math.random()*18;
+    const el = document.createElement("div");
+    el.className = "leaf-fall";
+    el.style.left = (Math.random()*100).toFixed(2)+"%";
+    el.style.animationDuration = (11+Math.random()*12).toFixed(2)+"s";
+    el.style.animationDelay = (-Math.random()*22).toFixed(2)+"s";
+    const col = colors[i%colors.length];
+    el.innerHTML = `<span class="leaf-sway" style="animation-duration:${(2.6+Math.random()*2.6).toFixed(2)}s;animation-delay:${(-Math.random()*4).toFixed(2)}s">
+      <svg width="${size}" height="${size}" viewBox="0 0 32 32"><path d="M16 2C27 8 31 19 16 31C1 19 5 8 16 2Z" fill="${col}"/><path d="M16 5v22" stroke="rgba(0,0,0,.18)" stroke-width="1.6"/></svg></span>`;
+    host.appendChild(el);
+  }
+})();
+
+function fmtDate(d){ return d.toLocaleDateString("uk-UA",{day:"2-digit",month:"long",year:"numeric"}); }
+$("#gateDate").textContent = "📅 " + fmtDate(new Date());
+
+function renderGate(){
+  $("#catGrid").innerHTML = DATA.map(c=>`
+    <button class="cat-card" type="button" data-cat="${c.id}"
+      style="--c:${c.color};--soft:${c.soft}" aria-label="Обрати категорію ${c.title}">
+      ${ART[c.art]}
+      <span class="cat-emoji">${c.emoji}</span>
+      <h2>${c.title}</h2>
+      <p>${c.tagline}</p>
+      <span class="cat-pick">Обрати категорію →</span>
+    </button>`).join("");
+}
+renderGate();
+
+$("#catGrid").addEventListener("click", e=>{
+  const btn = e.target.closest("[data-cat]");
+  if(!btn) return;
+  pickCategory(btn.dataset.cat);
+});
+
+function pickCategory(id){
+  CAT = DATA.find(c=>c.id===id);
+  document.documentElement.style.setProperty("--accent", CAT.color);
+  document.documentElement.style.setProperty("--accent-soft", CAT.soft);
+  document.documentElement.style.setProperty("--accent-ink", CAT.ink);
+  quizState = {answers:{}, score:0};
+  checkState = loadCheck(CAT.id);
+  if(!checkState || checkState.length !== CAT.check.length) checkState = CAT.check.map(()=>false);
+
+  $("#gate").style.display = "none";
+  $("#app").style.display = "block";
+  $("#curCat").innerHTML = `<span style="font-size:1.2rem">${CAT.emoji}</span><div>${CAT.title}<small>${CAT.tagline.split(".")[0]}</small></div>`;
+
+  renderRules(); renderQuiz(); renderCheck(); renderParents(); renderMemo(); renderPrintSheet();
+  switchTab("rules");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+$("#changeCat").addEventListener("click", ()=>{
+  $("#app").style.display="none";
+  $("#gate").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+function switchTab(name){
+  $$(".tab").forEach(t=>t.setAttribute("aria-selected", String(t.dataset.tab===name)));
+  $$(".panel").forEach(p=>p.classList.toggle("active", p.id==="panel-"+name));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+$("#tabs").addEventListener("click", e=>{
+  const t = e.target.closest(".tab");
+  if(t) switchTab(t.dataset.tab);
+});
+
+function renderRules(){
+  $("#panel-rules").innerHTML = `
+    <div class="sec-head">
+      <span class="badge">${CAT.emoji} ${CAT.title}</span>
+      <div>
+        <h2>Правила безпеки</h2>
+      </div>
+    </div>
+
+    <section class="mine-hero">
+      <div class="mine-hero-head">
+        <div class="mine-icon">⚠️</div>
+        <div>
+          <h2>🚨 Мінна безпека</h2>
+          <p class="mine-hero-sub">Ключова тема для виживання в умовах сьогодення</p>
+        </div>
+      </div>
+      <p>${CAT.mine.lead}</p>
+      <div class="mine-triad">
+        ${CAT.mine.triad.map(t=>`
+          <div class="triad-card">
+            <span class="big">${t.e}</span>
+            <b>${t.t}</b>
+            <span>${t.d}</span>
+          </div>`).join("")}
+      </div>
+      <div class="mine-actions">
+        <button class="btn" id="openMine">📚 Розгорнути правила мінної безпеки</button>
+        <button class="btn" id="callEmergency">📞 101 · ДСНС</button>
+      </div>
+    </section>
+
+    <div class="rules-list">
+      ${CAT.mine.items.map((m,i)=>`
+        <details class="rule-acc" data-mine="1" ${i===0?"open":""}>
+          <summary>
+            <span class="r-ico">${m.i}</span>
+            <span class="r-txt"><b>${m.t}</b><small>Розділ мінної безпеки</small></span>
+            <span class="r-plus">+</span>
+          </summary>
+          <div class="rule-body">${m.body}</div>
+        </details>`).join("")}
+
+      ${CAT.rules.map((r,i)=>`
+        <details class="rule-acc" ${i===0?"open":""}>
+          <summary>
+            <span class="r-ico">${r.i}</span>
+            <span class="r-txt"><b>${r.t}</b><small>${r.sub}</small></span>
+            <span class="r-plus">+</span>
+          </summary>
+          <div class="rule-body">${r.body}</div>
+        </details>`).join("")}
+    </div>
+
+    <div class="emergency">
+      <h3>📞 Екстрені номери, які має знати кожен</h3>
+      <div class="num-grid">
+        ${EMERGENCY.map(e=>`<div class="num"><b>${e.n}</b><span>${e.t}</span></div>`).join("")}
+      </div>
+    </div>`;
+
+  const openMineBtn = $("#openMine");
+  if(openMineBtn){
+    openMineBtn.addEventListener("click", ()=>{
+      const first = document.querySelector('[data-mine="1"]');
+      if(first){ first.open = true; first.scrollIntoView({behavior:"smooth",block:"start"}); }
+    });
+  }
+  const callBtn = $("#callEmergency");
+  if(callBtn) callBtn.addEventListener("click", ()=>{ location.href = "tel:101"; });
+}
+
+const LETTERS = ["А","Б","В","Г","Д"];
+function renderQuiz(){
+  $("#panel-quiz").innerHTML = `
+    <div class="sec-head">
+      <span class="badge">🧩 Інтерактивний тест</span>
+      <div>
+        <h2>6 ситуаційних запитань</h2>
+        <p>Обери варіант — і одразу побачиш пояснення. Тест адаптовано до категорії <b>${CAT.title}</b>.</p>
+      </div>
+    </div>
+    <div class="quiz-bar">
+      <span>Прогрес:</span>
+      <div class="pbar"><i id="quizPb"></i></div>
+      <span><b id="quizDone">0</b> / ${CAT.quiz.length}</span>
+      <span>·</span>
+      <span>Правильних: <b id="quizScore">0</b></span>
+    </div>
+    <div id="quizBody">
+      ${CAT.quiz.map((q,i)=>`
+        <article class="q-card" data-q="${i}">
+          <div class="q-head"><span class="q-num">${i+1}</span><h3>${q.q}</h3></div>
+          <div class="opts">
+            ${q.o.map((o,oi)=>`<button class="opt" type="button" data-q="${i}" data-o="${oi}">
+              <span class="letter">${LETTERS[oi]}</span><span>${o}</span></button>`).join("")}
+          </div>
+          <div class="why" data-why="${i}" hidden></div>
+        </article>`).join("")}
+    </div>
+    <div id="quizResult"></div>`;
+  updateQuizBar();
+}
+
+$("#panel-quiz").addEventListener("click", e=>{
+  const btn = e.target.closest(".opt");
+  if(!btn || btn.disabled) return;
+  const qi = +btn.dataset.q, oi = +btn.dataset.o;
+  if(quizState.answers[qi] !== undefined) return;
+  const q = CAT.quiz[qi];
+  const good = oi === q.c;
+  quizState.answers[qi] = oi;
+  if(good) quizState.score++;
+
+  const card = btn.closest(".q-card");
+  $$(".opt", card).forEach(b=>{
+    b.disabled = true;
+    const bOi = +b.dataset.o;
+    if(bOi === q.c) b.classList.add(good ? "correct" : "reveal");
+    if(bOi === oi && !good) b.classList.add("wrong");
+  });
+  const why = $(`[data-why="${qi}"]`);
+  why.hidden = false;
+  why.className = "why " + (good ? "good" : "bad");
+  why.innerHTML = `<b>${good ? "✅ Правильно!" : "❌ Не зовсім так."}</b> ${q.why}`;
+  updateQuizBar();
+  if(Object.keys(quizState.answers).length === CAT.quiz.length) showQuizResult();
+});
+
+function updateQuizBar(){
+  const done = Object.keys(quizState.answers).length;
+  const pb = $("#quizPb");
+  if(pb) pb.style.width = (done/CAT.quiz.length*100)+"%";
+  const d = $("#quizDone"); if(d) d.textContent = done;
+  const s = $("#quizScore"); if(s) s.textContent = quizState.score;
+}
+
+function showQuizResult(){
+  const sc = quizState.score, total = CAT.quiz.length;
+  let msg;
+  if(sc === total) msg = "Блискуче! Ти вмієш ухвалювати безпечні рішення у складних ситуаціях.";
+  else if(sc >= total-2) msg = "Дуже добре! Кілька ситуацій варто обговорити ще раз — перечитай правила.";
+  else if(sc >= Math.ceil(total/2)) msg = "Непогано, але є прогалини. Уважно переглянь розділ «Правила безпеки».";
+  else msg = "Це важлива тема. Повернись до правил, обсуди їх із дорослими та спробуй тест ще раз.";
+  $("#quizResult").innerHTML = `
+    <div class="result">
+      <div class="score">${sc} / ${total}</div>
+      <p>${msg}</p>
+      <button class="btn btn-primary" id="quizAgain">🔁 Пройти тест ще раз</button>
+    </div>`;
+  $("#quizResult").scrollIntoView({behavior:"smooth", block:"center"});
+}
+document.addEventListener("click", e=>{
+  if(e.target.closest("#quizAgain")){
+    quizState = {answers:{}, score:0};
+    renderQuiz();
+    $("#panel-quiz").scrollIntoView({behavior:"smooth", block:"start"});
+  }
+});
+
+const CHECK_KEY = id => "safeAutumn-check-"+id;
+function loadCheck(id){
+  try{ const raw = localStorage.getItem(CHECK_KEY(id)); return raw ? JSON.parse(raw) : null; }
+  catch(err){ return null; }
+}
+function saveCheck(){
+  try{ localStorage.setItem(CHECK_KEY(CAT.id), JSON.stringify(checkState)); }catch(err){}
+}
+
+function renderCheck(){
+  $("#panel-check").innerHTML = `
+    <div class="sec-head">
+      <span class="badge">✅ Чекліст готовності</span>
+      <div>
+        <h2>Самоперевірка учня</h2>
+        <p>Твердження адаптовані для категорії <b>${CAT.title}</b>. Познач усе, що справді про тебе — прогрес збережеться в цьому браузері.</p>
+      </div>
+    </div>
+    <div class="check-wrap">
+      <div class="check-list" id="checkList">
+        ${CAT.check.map((t,i)=>`
+          <label class="check-item ${checkState[i]?"done":""}" data-i="${i}">
+            <input type="checkbox" ${checkState[i]?"checked":""} data-cb="${i}" />
+            <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+            <span class="txt">${t}</span>
+          </label>`).join("")}
+      </div>
+      <aside class="check-side">
+        <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="bg" cx="60" cy="60" r="52"/>
+          <circle class="fg" id="ringFg" cx="60" cy="60" r="52" transform="rotate(-90 60 60)"
+            stroke-dasharray="${(2*Math.PI*52).toFixed(1)}" stroke-dashoffset="${(2*Math.PI*52).toFixed(1)}"/>
+          <text class="ring-txt" id="ringTxt" x="60" y="67" text-anchor="middle">0%</text>
+        </svg>
+        <h3 id="checkTitle">Твоя готовність</h3>
+        <p class="check-msg" id="checkMsg"></p>
+        <button class="btn btn-ghost" id="checkReset" style="width:100%">↺ Скинути чекліст</button>
+      </aside>
+    </div>`;
+  updateCheck();
+}
+
+function updateCheck(){
+  const total = CAT.check.length;
+  const done = checkState.filter(Boolean).length;
+  const pct = Math.round(done/total*100);
+  const C = (2*Math.PI*52);
+  const fg = $("#ringFg"); if(fg) fg.setAttribute("stroke-dashoffset", (C - C*pct/100).toFixed(1));
+  const txt = $("#ringTxt"); if(txt) txt.textContent = pct+"%";
+  const title = $("#checkTitle"); if(title) title.textContent = `Готовність: ${done} з ${total}`;
+  let msg;
+  if(pct === 100) msg = "🏆 Відмінно! Ти повністю готовий(а) до самостійних і безпечних дій.";
+  else if(pct >= 70) msg = "👍 Ти майже готовий(а). Допрацюй позначені пункти разом із батьками або класним керівником.";
+  else if(pct >= 40) msg = "💡 Є над чим попрацювати. Обери 3 найважливіші пункти й потренуй їх цього тижня.";
+  else if(pct > 0) msg = "🌱 Початок покладено. Почни з перших трьох пунктів і повернись до чекліста через кілька днів.";
+  else msg = "📝 Познач твердження, які справді про тебе. Чесна самоперевірка — перший крок до безпеки.";
+  const m = $("#checkMsg"); if(m) m.textContent = msg;
+}
+
+document.addEventListener("change", e=>{
+  const cb = e.target.closest("[data-cb]");
+  if(!cb || !CAT) return;
+  const i = +cb.dataset.cb;
+  checkState[i] = cb.checked;
+  cb.closest(".check-item").classList.toggle("done", cb.checked);
+  saveCheck(); updateCheck();
+});
+document.addEventListener("click", e=>{
+  if(e.target.closest("#checkReset")){
+    checkState = CAT.check.map(()=>false);
+    saveCheck(); renderCheck();
+  }
+});
+
+function renderParents(){
+  $("#panel-parents").innerHTML = `
+    <div class="sec-head">
+      <span class="badge">👪 Матеріали для батьків</span>
+      <div>
+        <h2>Як підтримати самостійність дитини</h2>
+        <p>Рекомендації адаптовані для батьків учнів категорії <b>${CAT.title}</b>. Їх можна використати на батьківських зборах або розіслати в чат класу.</p>
+      </div>
+    </div>
+    <div class="parents">
+      ${CAT.parents.map((p,idx)=>`
+        <details class="acc" ${idx<2?"open":""}>
+          <summary><span class="pico">${p.i}</span><span>${p.t}</span><span class="plus">+</span></summary>
+          <div class="acc-body">
+            <ul>${p.b.map(x=>`<li>${x}</li>`).join("")}</ul>
+          </div>
+        </details>`).join("")}
+    </div>
+    <div class="tip">
+      <b>💬 Порада для розмови вдома:</b> замість «не ходи туди» запитайте «як ти вчиниш, якщо…?». Так дитина тренує власне рішення, а не запам’ятовує заборону. Обговоріть одну ситуацію з тесту щовечора протягом тижня.
+    </div>`;
+}
+
+function memoHTML(forPrint){
+  const d = new Date();
+  return `
+  <div class="paper">
+    <div class="paper-inner">
+      <div class="paper-head">
+        <div class="cat-badge"><span class="e">${CAT.emoji}</span><span>Вікова категорія: ${CAT.title}<small>${CAT.tagline}</small></span></div>
+        <div>
+          <h3>🍁 Пам'ятка «Безпечні осінні канікули»</h3>
+          <div style="color:#8b7a68;font-size:.85rem">Освітній ресурс для вчителя, учнів і батьків</div>
+        </div>
+        <div class="date">Дата друку:<br><b>${fmtDate(d)}</b></div>
+      </div>
+
+      <h4>📌 Головні правила для учнів (${CAT.title})</h4>
+      <ol>${CAT.memo.map(m=>`<li>${m}</li>`).join("")}</ol>
+
+      <div class="cols">
+        <div>
+          <h4>📞 Екстрені номери</h4>
+          <div class="mini-nums">
+            ${EMERGENCY.map(e=>`<span class="mini-num" title="${e.t}">${e.n}</span>`).join("")}
+          </div>
+          <p style="font-size:.85rem;color:#8b7a68;margin-top:8px">101 — ДСНС, 102 — поліція, 103 — швидка, 104 — газова служба, 112 — єдиний номер.</p>
+        </div>
+        <div>
+          <h4>👨‍👩‍👧 Контакти моєї родини</h4>
+          <div class="fill-row">Мама / тато:<span class="fill-line"></span></div>
+          <div class="fill-row">Бабуся / дідусь:<span class="fill-line"></span></div>
+          <div class="fill-row">Інший дорослий:<span class="fill-line"></span></div>
+          <div class="fill-row">Моя адреса:<span class="fill-line"></span></div>
+        </div>
+      </div>
+
+      <h4>🤝 Наша домовленість</h4>
+      <div class="fill-row">Я повідомляю, куди йду:<span class="fill-line"></span></div>
+      <div class="fill-row">Я повертаюсь не пізніше:<span class="fill-line"></span></div>
+      <div class="fill-row">У разі зміни планів я:<span class="fill-line"></span></div>
+
+      <div class="sign">
+        <div style="flex:1;min-width:150px">Учень / учениця:<div class="fill-line"></div></div>
+        <div style="flex:1;min-width:150px">Батьки:<div class="fill-line"></div></div>
+        <div style="flex:1;min-width:150px">Класний керівник:<div class="fill-line"></div></div>
+      </div>
+
+      <div class="memo-author">
+        <span class="author-badge">ЗБД</span>
+        <span class="author-txt"><b>ЗБД</b> | Ідеї • Матеріали • Уроки. Ірина ТЕСЛЕНОК</span>
+      </div>
+
+      <p class="note" style="font-size:.8rem;color:#8b7a68;margin-top:10px">${forPrint?"Пам'ятку згенеровано автоматично з урахуванням вибраної вікової категорії. Розмістіть її на холодильнику або в щоденнику.":"Під час друку пам'ятка формується рівно на одному аркуші A4 (книжковий формат) з вибраною віковою категорією."}</p>
+    </div>
+  </div>`;
+}
+
+function renderMemo(){
+  $("#panel-memo").innerHTML = `
+    <div class="sec-head">
+      <span class="badge">🖨️ Пам'ятка для друку</span>
+      <div>
+        <h2>Пам'ятка з вибраною категорією</h2>
+        <p>Натисни «Друкувати» (або Ctrl/Cmd + P). Пам'ятка друкується рівно на <b>одному аркуші A4</b> у книжковому форматі з категорією <b>${CAT.title}</b>.</p>
+      </div>
+    </div>
+    <div class="memo-actions">
+      <button class="btn btn-primary" id="printBtn">🖨️ Друкувати пам'ятку (1 аркуш A4)</button>
+      <button class="btn btn-ghost" id="memoToTab">📋 Скопіювати текст правил</button>
+      <span style="color:var(--muted);font-size:.88rem">Попередній перегляд — так виглядатиме друкована сторінка.</span>
+    </div>
+    <div id="memoPreview">${memoHTML(false)}</div>`;
+}
+
+function renderPrintSheet(){
+  $("#printSheet").innerHTML = CAT ? memoHTML(true) : "";
+}
+
+document.addEventListener("click", e=>{
+  if(e.target.closest("#printBtn") || e.target.closest("#printTop")){
+    if(!CAT) return;
+    renderPrintSheet();
+    window.print();
+  }
+  if(e.target.closest("#memoToTab") && CAT){
+    const text = `ПАМ'ЯТКА «БЕЗПЕЧНІ ОСІННІ КАНІКУЛИ» — ${CAT.title}\n${CAT.tagline}\n\nГОЛОВНІ ПРАВИЛА:\n` +
+      CAT.memo.map((m,i)=>`${i+1}. ${m}`).join("\n") +
+      `\n\nЕКСТРЕНІ НОМЕРИ: 112 (єдиний), 101, 102, 103, 104.\n\nЗБД | Ідеї • Матеріали • Уроки. Ірина ТЕСЛЕНОК`;
+    navigator.clipboard?.writeText(text).then(()=>{
+      const b = $("#memoToTab");
+      const old = b.textContent;
+      b.textContent = "✅ Скопійовано!";
+      setTimeout(()=>b.textContent = old, 1800);
+    }).catch(()=>{ alert(text); });
+  }
+});
+
+window.addEventListener("beforeprint", ()=>{ if(CAT) renderPrintSheet(); });
+</script>
+</body>
+</html>
